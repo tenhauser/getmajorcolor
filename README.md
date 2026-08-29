@@ -17,18 +17,18 @@ A cross-platform command-line tool that identifies the major colors in an image.
 **Linux / macOS**
 
 ```bash
-curl -sSL https://github.com/<owner>/getmajorcolors/releases/latest/download/install.sh | bash
+curl -sSL https://github.com/tenhauser/getmajorcolor/releases/latest/download/install.sh | bash
 ```
 
 **Windows (PowerShell)**
 
 ```powershell
-Invoke-RestMethod -Uri https://github.com/<owner>/getmajorcolors/releases/latest/download/install.ps1 | Invoke-Expression
+Invoke-RestMethod -Uri https://github.com/tenhauser/getmajorcolor/releases/latest/download/install.ps1 | Invoke-Expression
 ```
 
 ### Manual
 
-Download the latest binary for your platform from [GitHub Releases](https://github.com/<owner>/getmajorcolors/releases) and place it on your `PATH`.
+Download the latest binary for your platform from [GitHub Releases](https://github.com/tenhauser/getmajorcolor/releases) and place it on your `PATH`.
 
 ## Usage
 

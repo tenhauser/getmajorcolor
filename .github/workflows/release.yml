@@ -1,0 +1,83 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - rid: win-x64
+            platform: win
+            ext: .exe
+            archive_ext: zip
+          - rid: linux-x64
+            platform: linux
+            ext: ""
+            archive_ext: tar.gz
+          - rid: osx-x64
+            platform: osx
+            ext: ""
+            archive_ext: tar.gz
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Publish
+        run: >
+          dotnet publish src/GetMajorColors/GetMajorColors.csproj
+          -c Release
+          -r ${{ matrix.rid }}
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:PublishTrimmed=false
+          -p:AssemblyName=getmajorcolors
+          -o artifacts/${{ matrix.rid }}
+
+      - name: Package
+        shell: bash
+        run: |
+          mkdir -p release
+          cd artifacts/${{ matrix.rid }}
+          if [ "${{ matrix.archive_ext }}" = "zip" ]; then
+            zip -r ../../release/getmajorcolors-${{ matrix.platform }}-x64.zip getmajorcolors${{ matrix.ext }}
+          else
+            tar -czf ../../release/getmajorcolors-${{ matrix.platform }}-x64.tar.gz getmajorcolors${{ matrix.ext }}
+          fi
+          cd ../../release
+          sha256sum getmajorcolors-${{ matrix.platform }}-x64.${{ matrix.archive_ext }} > getmajorcolors-${{ matrix.platform }}-x64.${{ matrix.archive_ext }}.sha256
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.rid }}-artifacts
+          path: release/*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release
+          merge-multiple: true
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
+          generate_release_notes: true

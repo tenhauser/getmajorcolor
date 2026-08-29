@@ -1,0 +1,41 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+packages/
+project.lock.json
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.sln.docstates
+
+# Test and coverage
+TestResults/
+coverage/
+*.coverage
+*.trx
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Self-contained publish outputs
+publish/
+out/
+artifacts/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*

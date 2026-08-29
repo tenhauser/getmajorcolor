@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GetMajorColors/GetMajorColors.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GetMajorColors.Tests/GetMajorColors.Tests.csproj" />
+  </Folder>
+</Solution>

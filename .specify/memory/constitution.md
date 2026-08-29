@@ -1,8 +1,9 @@
 <!--
 Sync Impact Report
-- Version change: 0.0.0 → 1.0.0
-- Modified principles: All five placeholder principles replaced with project-specific principles.
-- Added sections: Technology Stack & Distribution, Development Workflow & Quality Gates.
+- Version change: 1.0.0 → 1.1.0
+- Modified principles: V. CLI-First Design expanded to cover input precedence,
+  defaults, pipelines, and machine-readable output.
+- Added sections: None.
 - Removed sections: None.
 - Follow-up TODOs: None.
 -->
@@ -13,14 +14,15 @@ Sync Impact Report
 
 ### I. Cross-Platform Compatibility
 
-The application MUST build and run on Linux without vendor-specific dependencies.
-Release artifacts MUST be statically linked or self-contained binaries so users can
-install and run the tool without compiling from source. Container-based or
-package-manager distribution is secondary; portable binaries are the primary
-compatibility target.
+The application MUST build and run on Linux, Windows, and macOS without
+vendor-specific dependencies. Release artifacts MUST be statically linked or
+self-contained binaries so users can install and run the tool without compiling
+from source. Container-based or package-manager distribution is secondary;
+portable binaries are the primary compatibility target.
 
 **Rationale**: The user base depends on easily available binaries for work. A single
-static binary removes friction across distributions and CI environments.
+static binary removes friction across distributions, CI environments, and
+personal machines.
 
 ### II. Simplicity
 
@@ -54,21 +56,31 @@ bugs are a critical class of exploit that this project refuses to tolerate.
 
 ### V. CLI-First Design
 
-All functionality MUST be accessible from the command line. Input MUST be accepted
-from file paths or standard input; output MUST go to standard output, with errors
-to standard error. The tool MUST return meaningful exit codes and support a
+All functionality MUST be accessible from the command line. The tool MUST accept
+input from a file path, from standard input, or from the system clipboard via an
+explicit option. When a file path and standard input are both present, the file
+path takes precedence. Output MUST go to standard output, with errors to standard
+error. The tool MUST return meaningful exit codes and MUST support at least one
 machine-readable output format.
 
-**Rationale**: The application is a CLI image classifier. Scriptability and
-predictable I/O are its primary interface contracts.
+Defaults MUST be predictable and pipeline-friendly. The tool SHOULD produce the
+smallest useful result by default, allow users to request more detail through
+explicit options, and never require interactive input in normal operation.
+
+**Rationale**: The application is a CLI image classifier. Scriptability,
+predictable I/O, and composability with pipes and other command-line tools are
+its primary interface contracts.
 
 ## Technology Stack & Distribution
 
 - The default implementation language SHOULD be one that produces native,
   memory-safe binaries with minimal runtime dependencies.
-- Build scripts MUST produce Linux binaries as part of every release.
-- Release artifacts MUST be published alongside checksums and installation
-  instructions.
+- Build scripts MUST produce binaries for Linux, Windows, and macOS as part of
+  every release.
+- Release artifacts MUST be published on GitHub Releases with SHA-256 checksums
+  and installation instructions.
+- Platform-specific install scripts SHOULD be provided, with manual download
+  instructions as a fallback.
 - Dependency choices MUST favor widely available, well-maintained libraries over
   bleeding-edge or niche alternatives.
 
@@ -93,4 +105,4 @@ the version line and the Sync Impact Report at the top of this file.
 - **Amendments**: Proposed amendments MUST be recorded in project history with a
   rationale before the version line is updated.
 
-**Version**: 1.0.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-08-29
+**Version**: 1.1.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-08-29

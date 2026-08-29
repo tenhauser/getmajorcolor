@@ -116,13 +116,13 @@ Repeat for `linux-x64` and `osx-x64`. Verify the produced binary runs without th
 ### Linux / macOS
 
 ```bash
-curl -sSL https://github.com/tenhauser/getmajorcolor/releases/latest/download/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/tenhauser/getmajorcolor/main/install.sh | bash
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-Invoke-RestMethod -Uri https://github.com/tenhauser/getmajorcolor/releases/latest/download/install.ps1 | Invoke-Expression
+Invoke-RestMethod -Uri https://raw.githubusercontent.com/tenhauser/getmajorcolor/main/install.ps1 | Invoke-Expression
 ```
 
 Expected: the `getmajorcolors` binary is placed on `PATH` and `getmajorcolors --version` prints the release version.

@@ -17,13 +17,13 @@ A cross-platform command-line tool that identifies the major colors in an image.
 **Linux / macOS**
 
 ```bash
-curl -sSL https://github.com/tenhauser/getmajorcolor/releases/latest/download/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/tenhauser/getmajorcolor/main/install.sh | bash
 ```
 
 **Windows (PowerShell)**
 
 ```powershell
-Invoke-RestMethod -Uri https://github.com/tenhauser/getmajorcolor/releases/latest/download/install.ps1 | Invoke-Expression
+Invoke-RestMethod -Uri https://raw.githubusercontent.com/tenhauser/getmajorcolor/main/install.ps1 | Invoke-Expression
 ```
 
 ### Manual

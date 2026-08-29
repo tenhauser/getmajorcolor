@@ -7,7 +7,7 @@
 #>
 
 param(
-    [string]$Repo = "<owner>/getmajorcolors",
+    [string]$Repo = "tenhauser/getmajorcolor",
     [string]$InstallDir = "$env:LOCALAPPDATA\getmajorcolors"
 )
 

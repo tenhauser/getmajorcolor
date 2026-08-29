@@ -4,7 +4,7 @@ set -euo pipefail
 # Install script for getmajorcolors.
 # Downloads the latest release binary from GitHub and places it on PATH.
 
-REPO="<owner>/getmajorcolors"
+REPO="tenhauser/getmajorcolor"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/bin}"
 
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
